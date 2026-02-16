@@ -1,0 +1,237 @@
+body {
+    margin: 0;
+    background: #2d3250;
+    font-family: 'Raleway', sans-serif;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Заголовок */
+
+.headerName {
+    background: #424769;
+}
+
+#nameApp {
+    color: white;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Карточки */
+
+.box {
+    width: 500px;
+    padding: 20px;
+    margin: 30px auto;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Input */
+
+.input-container {
+    position: relative;
+    width: 350px;
+    margin: 20px 90px;
+}
+
+.input-container input {
+    width: 100%;
+    padding: 12px 10px;
+    border: 2px solid #f2a86c;
+    border-radius: 10px;
+    outline: none;
+    font-size: 16px;
+    background: #f6b17a;
+    color: #2d3250;
+}
+
+/* Кнопка */
+
+.btn {
+    width: 200px;
+    margin: 10px auto;
+    display: flex;
+    justify-content: center;
+}
+
+#addItem {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    background: #f2a86c;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#addItem:hover {
+    background: #f7bd8e;
+    transform: translateY(-2px);
+}
+
+/* Список задач */
+
+.todo-container {
+    width: 500px;
+    background: #424769;
+    border-radius: 16px;
+    padding: 25px;
+    margin-top: 20px;
+}
+
+
+
+#todoList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#todoList li {
+    background: #2d3250;
+    color: white;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    align-items: center;
+}
+
+#addItem:hover {
+    background: #f7bd8e;
+    transform: translateY(-2px);
+}
+
+.input-container input {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.todoList li {
+    background: #2d3250;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#todoList li.completed {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+#todoList .taskText{
+    margin-right: 10px;
+}
+.taskLabel { 
+    display: flex; 
+    align-items: center; 
+    gap: 12px;
+}
+
+/* кнопка удаления */
+
+.dlt {
+    background: #f6b17a;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-left: 20px;
+        transition: all 0.2s ease;
+}
+.dlt:hover {
+    background: #f7a665;
+    transform: scale(1.05);
+}
+
+.dlt:active {
+    transform: scale(0.95);
+}
+
+.dlt:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(249, 166, 71, 0.3);
+}
+
+
+/* Лист завершенных задач */
+
+.complete-container {
+    width: 500px;
+    background: #424769;
+    border-radius: 16px;
+    padding: 25px;
+    margin-top: 20px;
+}
+.complete-container h2 { 
+    color: white;
+    text-align: center;
+    margin: 10px;
+}
+#completeList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#completeList li {
+    background: #2d3250;
+    color: white;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    align-items: center;
+}
+
+/* для кнопики редактирования задания */
+
+.changeBtn {
+    background: #f6b17a;
+    border: none;
+    padding: 5px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-left: 20px;
+    transition: all 0.2s ease;
+}
+.changeBtn:hover {
+    background: #f7a665;
+    transform: scale(1.05);
+}
+
+.changeBtn:active {
+    transform: scale(0.95);
+}
+
+.changeBtn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(249, 166, 71, 0.3);
+}
+
+.editImg{
+    width: 16px;
+    height: 16px;
+    align-items: center;
+}
+
+.inputChange{
+    display: inline-block;
+    max-width: 300px;    
+    height: 10px;  
+    margin-left: 10px;
+}
+
+.inputChange input {
+    width: 100%;
+    height: 100%;           /* растягиваем input на весь контейнер */
+    padding: 8px 10px;     /* внутренние отступы */
+    border: 2px solid #f2a86c;
+    border-radius: 10px;
+    outline: none;
+    font-size: 16px;
+    background: #f6b17a;
+    color: #2d3250;
+    box-sizing: border-box;
+}
