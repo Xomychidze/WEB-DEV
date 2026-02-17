@@ -1,16 +1,11 @@
 <ul>
   <li *ngFor="let food of foods">
-    <a (click)="toggleDescription(food.id)">
+    <a>
       <img [src]="food.imageUrl" alt="food" width="200">
-
       <div class="content">
         <div class="name">{{ food.name }}</div>
         <span class="favorite {{ food.favorite ? '' : 'not' }}">♥</span>
-
-        <app-star-rating
-          [rating]="food.stars"
-          [readonly]="false">
-        </app-star-rating>
+        <app-star-rating [rating]="food.stars" [readonly]="false"></app-star-rating>
 
         <div class="product-item-footer"> 
           <div class="origins">
@@ -18,23 +13,20 @@
               {{ origin }}
             </span>
           </div>
-
           <div class="cook-time"> 
-            <span>🕰️</span>
-            {{ food.cookTime }}
+            <span >🕰️</span>
+            {{food.cookTime}}
           </div>
         </div>
-
         <div class="price">
-          <span>{{ food.price | currency }}</span>
-        </div>
-
-        <!-- описание -->
-        <div class="description" *ngIf="openedFoodId === food.id">
-          {{ food.description }}
+            <span>
+                {{food.price|currency}}
+            </span>
         </div>
 
       </div>
     </a>
   </li>
 </ul>
+
+
