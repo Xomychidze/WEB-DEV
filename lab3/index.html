@@ -1,40 +1,38 @@
-<ul>
-  <li *ngFor="let food of foods">
-    <a (click)="toggleDescription(food.id)">
-      <img [src]="food.imageUrl" alt="food" width="200">
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+    <title>To-do app</title>
+</head>
 
-      <div class="content">
-        <div class="name">{{ food.name }}</div>
-        <span class="favorite {{ food.favorite ? '' : 'not' }}">♥</span>
+<body>
+    <div class="main">
 
-        <app-star-rating
-          [rating]="food.stars"
-          [readonly]="false">
-        </app-star-rating>
-
-        <div class="product-item-footer"> 
-          <div class="origins">
-            <span *ngFor="let origin of food.origins">
-              {{ origin }}
-            </span>
-          </div>
-
-          <div class="cook-time"> 
-            <span>🕰️</span>
-            {{ food.cookTime }}
-          </div>
+        <div class="headerName box">
+            <h1 id="nameApp">To-do list</h1>
         </div>
 
-        <div class="price">
-          <span>{{ food.price | currency }}</span>
+        <div class="input-container">
+            <input type="text" id="taskInput" placeholder="Введите задачу">
         </div>
 
-        <!-- описание -->
-        <div class="description" *ngIf="openedFoodId === food.id">
-          {{ food.description }}
+        <div class="btn">
+            <button id="addItem">Добавить задачу</button>
         </div>
 
-      </div>
-    </a>
-  </li>
-</ul>
+        <div class="todo-container">
+            <ul id="todoList"></ul>
+        </div>
+
+        <div class="complete-container">
+            <h2> Законченые задачи </h2>
+            <ul id="completeList"></ul>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
