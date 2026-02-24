@@ -1,0 +1,19 @@
+<div class="product-card">
+  <h3>{{ product().name }}</h3>
+
+  <app-product-gallery [product]="product()"></app-product-gallery>
+
+  <p>{{ product().description }}</p>
+  <p>Цена: {{ product().price }} ₸</p>
+
+  <div class="rating">
+    @for (star of [1,2,3,4,5]; track star) {
+      <span>{{ star <= product().rating ? '★' : '☆' }}</span>
+    }
+  </div>
+
+  <div class="actions">
+    <a [routerLink]="['/product', product().id]">Подробнее</a>
+    <button (click)="share()">Share</button>
+  </div>
+</div>

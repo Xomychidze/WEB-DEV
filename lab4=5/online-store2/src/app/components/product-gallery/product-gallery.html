@@ -1,0 +1,19 @@
+<div class="gallery">
+    <div class="main-image">
+      <img [src]="product().images[currentIndex()]" [alt]="product().name" />
+    </div>
+
+    <div class="thumbnails">
+      @for (img of product().images; track img) {
+        <img [src]="img"
+             [class.selected]="product().images.indexOf(img) === currentIndex()"
+             (click)="select(product().images.indexOf(img))"
+             [alt]="product().name" />
+      }
+    </div>
+
+    <div class="controls">
+      <button (click)="prev()">‹</button>
+      <button (click)="next()">›</button>
+    </div>
+  </div>
