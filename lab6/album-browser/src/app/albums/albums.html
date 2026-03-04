@@ -1,0 +1,34 @@
+<section class="albums-page">
+  <h2>Albums</h2>
+
+  <!-- Skeleton loader while fetching -->
+  <ul *ngIf="loading" class="album-list">
+    <li *ngFor="let i of skeletons" class="skeleton-item">
+      <div class="skeleton-id"></div>
+      <div class="skeleton-title"></div>
+    </li>
+  </ul>
+
+  <!-- Actual list -->
+  <ul *ngIf="!loading" class="album-list">
+    <li
+      *ngFor="let album of visibleAlbums"
+      class="album-item"
+      (click)="goToAlbum(album.id)"
+    >
+      <div class="album-id">#{{ album.id }}</div>
+      <div class="album-title">{{ album.title }}</div>
+      <button class="delete-btn" (click)="deleteAlbum($event, album.id)">✕</button>
+    </li>
+  </ul>
+
+  <p *ngIf="!loading && albums.length === 0" class="empty">No albums found.</p>
+
+  <button
+    *ngIf="!loading && visibleAlbums.length < albums.length"
+    class="load-more-btn"
+    (click)="loadMore()"
+  >
+    Load more ({{ albums.length - visibleAlbums.length }} remaining)
+  </button>
+</section>
