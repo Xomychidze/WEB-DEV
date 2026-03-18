@@ -1,9 +1,9 @@
-<section class="albums-page">
+<section class="albums">
   <h2>Albums</h2>
 
   <!-- Skeleton loader while fetching -->
   <ul *ngIf="loading" class="album-list">
-    <li *ngFor="let i of skeletons" class="skeleton-item">
+    <li *ngFor="let i of skeletons" class="skeleton-item" aria-hidden="true">
       <div class="skeleton-id"></div>
       <div class="skeleton-title"></div>
     </li>
@@ -12,18 +12,27 @@
   <!-- Actual list -->
   <ul *ngIf="!loading" class="album-list">
     <li
-      *ngFor="let album of visibleAlbums"
+      *ngFor="let album of visibleAlbums; trackBy: trackByAlbumId"
       class="album-item"
       (click)="goToAlbum(album.id)"
+      tabindex="0"
     >
       <div class="album-id">#{{ album.id }}</div>
       <div class="album-title">{{ album.title }}</div>
-      <button class="delete-btn" (click)="deleteAlbum($event, album.id)">✕</button>
+      <button
+        class="delete-btn"
+        aria-label="Delete album {{ album.title }}"
+        (click)="deleteAlbum($event, album.id)"
+      >
+        ✕
+      </button>
     </li>
   </ul>
 
+  <!-- Empty state -->
   <p *ngIf="!loading && albums.length === 0" class="empty">No albums found.</p>
 
+  <!-- Load more button -->
   <button
     *ngIf="!loading && visibleAlbums.length < albums.length"
     class="load-more-btn"

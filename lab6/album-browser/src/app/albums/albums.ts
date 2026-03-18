@@ -1,49 +1,61 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { AlbumService } from '../services/album.service';
-import { Album } from '../../models/album';
+
+interface Album {
+  id: number;
+  title: string;
+}
 
 @Component({
   selector: 'app-albums',
-  imports: [CommonModule],
   templateUrl: './albums.html',
-  styleUrl: './albums.css'
+  styleUrls: ['./albums.css']
 })
 export class AlbumsComponent implements OnInit {
-  albums: Album[] = [];
-  visibleAlbums: Album[] = [];
+  albums: Album[] = [];          // full list from API
+  visibleAlbums: Album[] = [];   // displayed albums
+  skeletons = Array(5);          // for skeleton loader
   loading = true;
-  pageSize = 20;
-  skeletons = [1, 2, 3, 4, 5, 6, 7, 8]; // ← add this
-
-  constructor(private albumService: AlbumService, private router: Router) {}
+  pageSize = 10;                 // number of albums to load per click
+  currentPage = 0;
 
   ngOnInit(): void {
-    this.albumService.getAlbums().subscribe({
-      next: (data) => {
-        this.albums = data;
-        this.visibleAlbums = this.albums.slice(0, this.pageSize); // ← здесь, внутри колбека
-        this.loading = false;
-      },
-      error: () => { this.loading = false; }
-    });
+    this.fetchAlbums();
   }
 
-  loadMore(): void {
-    const next = this.visibleAlbums.length + this.pageSize;
-    this.visibleAlbums = this.albums.slice(0, next);
+  fetchAlbums() {
+    this.loading = true;
+
+    // Simulate API call
+    setTimeout(() => {
+      this.albums = Array.from({ length: 25 }, (_, i) => ({
+        id: i + 1,
+        title: `Album ${i + 1}`
+      }));
+      this.loadMore();
+      this.loading = false;
+    }, 1000);
   }
 
-  goToAlbum(id: number): void {
-    this.router.navigate(['/albums', id]);
+  loadMore() {
+    const nextPage = this.currentPage + 1;
+    const start = this.currentPage * this.pageSize;
+    const end = nextPage * this.pageSize;
+    this.visibleAlbums = this.visibleAlbums.concat(this.albums.slice(start, end));
+    this.currentPage = nextPage;
   }
 
-  deleteAlbum(event: Event, id: number): void {
-    event.stopPropagation();
-    this.albumService.deleteAlbum(id).subscribe(() => {
-      this.albums = this.albums.filter(a => a.id !== id);
-      this.visibleAlbums = this.visibleAlbums.filter(a => a.id !== id);
-    });
+  goToAlbum(id: number) {
+    console.log('Navigate to album', id);
+    // Implement actual navigation logic
+  }
+
+  deleteAlbum(event: Event, id: number) {
+    event.stopPropagation(); // Prevent click on li
+    this.albums = this.albums.filter(album => album.id !== id);
+    this.visibleAlbums = this.visibleAlbums.filter(album => album.id !== id);
+  }
+
+  trackByAlbumId(index: number, album: Album) {
+    return album.id;
   }
 }

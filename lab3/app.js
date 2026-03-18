@@ -74,18 +74,17 @@ function render() {
         deleteBtn.className = "dlt";
 
         // кнопка редактирования
-        const editBtn = document.createElement("button");
-        editBtn.className = "changeBtn";
+            const editBtn = document.createElement("button");
+            editBtn.className = "changeBtn";
 
-        const img = document.createElement("img");
-        img.className = "editImg";
-        img.src = "edit.png";
-
-        editBtn.appendChild(img);
-
+            const img = document.createElement("img");
+            img.className = "editImg";
+            img.src = "edit.png";
+            editBtn.appendChild(img);
         li.append(checkbox, span, editBtn, deleteBtn);
 
         if (task.done) {
+            li.removeChild(editBtn);
             completeList.appendChild(li);
         } else {
             todoList.appendChild(li);
@@ -131,6 +130,7 @@ function handleListClick(e) {
         deleteTask(id);
     }
 
+    
     if (btn.classList.contains("changeBtn")) {
         const span = li.querySelector("span");
         startEdit(span, id);
@@ -138,6 +138,8 @@ function handleListClick(e) {
 }
 
 function startEdit(span, id){ 
+
+
     const div = document.createElement("div");
     const input = document.createElement("input");
     div.className = "inputChange";
